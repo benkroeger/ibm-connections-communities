@@ -62,7 +62,7 @@ const service = communitiesService(serviceOptions.baseUrl, serviceOptions);
 If not, please provide you own authorization type directly into the ```options``` object.
 Once service instance is created, you are able to use next methods:
 ```
-1. service.communityMembers
+    service.communityMembers
 ```
 
 Method comes with three arguments, ```query```, ```options``` and ```callback```.
@@ -70,21 +70,9 @@ Method comes with three arguments, ```query```, ```options``` and ```callback```
 ```query```     - valid query parameters for each method can be found in the source code: /lib/methods/*
 ```options```   - additional options merged into default http request params
 
-#### 2. service.communityMembers
+#### service.communityMembers
 
 If you need to retrieve list of all community members, simply provide ```communityUuid``` through ```query``` object.
-These are the valid query parameters, that can help with sorting/filtering the result:
-```
-1. service.communityMembers
-```
-    -userid
-    -email
-    -page
-    -ps
-    -role
-    -since
-    -sortBy
-    -sortOrder
 ```js
 
 const query = {
@@ -97,11 +85,23 @@ service.communityMembers(query, {/* request options param */}, (err, response) =
   
   // use communityMembers Array to extract metadata about each member.
 });
-
 ```
-If you need to a single member, please provide ```communityUuid``` and ```email/userid``` through ```query``` object.
 
-**Warning**: When ```email/userid``` is/are provided, all other valid query parameters are ignored!
+These are the valid query parameters, that can help with sorting/filtering the result:
+```
+    -userid
+    -email
+    -page
+    -ps
+    -role
+    -since
+    -sortBy
+    -sortOrder
+```
+
+If you need to retrieve a single community member, please provide ```communityUuid``` and ```email/userid``` through ```query``` object.
+
+**Warning**: When ```email/userid``` is provided, all other valid query parameters are ignored!
 
 ```js
 const query = {
