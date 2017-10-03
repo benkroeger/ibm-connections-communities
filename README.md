@@ -108,6 +108,8 @@ If you need to retrieve a single community member, please provide ```communityUu
 const query = {
   communityUuid: 'enter-community-id-here',
   userid: '123456', // or email: 'private-mail@something.me'
+  ps: 100, // this parameter will be ignored
+  sortBy: 'name', // this parameter will be ignored as well
 };
 
 service.communityMembers(query, {/* request options param */}, (err, communityMember) => {
