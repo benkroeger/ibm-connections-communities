@@ -1,0 +1,45 @@
+{
+  "name": "ibm-connections-communities",
+  "version": "0.0.1",
+  "description": "An implementation for the IBM Connections Communities API",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "author": "Andreja Jevtic <andrajevtic@gmail.com>",
+  "keywords": [
+    "ibm-connections-communities",
+    "ibm",
+    "communities",
+    "service"
+  ],
+  "repository": {},
+  "bugs": {},
+  "homepage": "",
+  "scripts": {
+    "coverage": "nyc npm run test && nyc report --reporter=html",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint-fix": "npm run lint -- --fix",
+    "test": "ava --verbose",
+    "clean": "rm -rf /node_modules package-lock.json"
+  },
+  "dependencies": {
+    "lodash": "4.17.4",
+    "oniyi-http-client": "1.1.1",
+    "oniyi-http-plugin-credentials": "0.2.1",
+    "oniyi-http-plugin-format-url-template": "1.0.2",
+    "oniyi-utils-xml": "1.1.0"
+  },
+  "devDependencies": {
+    "ava": "0.22.0",
+    "eslint": "4.8.0",
+    "eslint-config-oniyi": "5.0.2",
+    "eslint-plugin-ava": "4.2.2",
+    "nock": "9.0.22",
+    "nyc": "11.2.1"
+  },
+  "files": [
+    "lib/"
+  ],
+  "directories": {
+    "test": "test"
+  }
+}
