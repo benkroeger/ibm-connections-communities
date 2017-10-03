@@ -1,0 +1,5 @@
+{
+  "community":  "http://www.ibm.com/xmlns/prod/sn/communities",
+  "forum":      "http://www.ibm.com/xmlns/prod/sn/forums",
+  "activity":   "http://www.ibm.com/xmlns/prod/sn/activities"
+}
