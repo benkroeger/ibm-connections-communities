@@ -68,9 +68,10 @@ Once service instance is created, you are able to use next methods:
 Method comes with three arguments, ```query```, ```options``` and ```callback```.
 
 ```query```     - valid query parameters for each method can be found in the source code: /lib/methods/*
+
 ```options```   - additional options merged into default http request params
 
-#### service.communityMembers
+### service.communityMembers
 
 If you need to retrieve list of all community members, simply provide ```communityUuid``` through ```query``` object.
 ```js
