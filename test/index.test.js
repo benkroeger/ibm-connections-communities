@@ -10,7 +10,7 @@ import _ from 'lodash';
 import { mock, record, persist } from './fixtures/http-mocking';
 import serviceFactory from '../lib';
 
-const { unmocked } = process.env;
+const { unmocked, username, password } = process.env;
 
 test.before(() => (unmocked ? record() : mock()));
 test.after(() => unmocked && persist());
@@ -23,8 +23,8 @@ test.beforeEach((t) => {
   if (unmocked) {
     Object.assign(serviceOptions.defaults, {
       auth: {
-        user: 'albert.energy@gis-demo.com',
-        pass: 'Gis$Demo',
+        user: username,
+        pass: password,
       },
     });
   }
@@ -55,13 +55,13 @@ test.cb('validate retrieving community members feed, communityUuid provided', (t
 
   service.communityMembers(query, { /* options */ }, (err, response) => {
     t.ifError(err);
-    const { communityMembers: { totalResults, startIndex, itemsPerPage, entries } } = response;
+    const { totalResults, startIndex, itemsPerPage, communityMembers } = response;
     t.is(totalResults, 9);
     t.is(startIndex, 1);
     t.is(itemsPerPage, 10);
 
-    t.true(_.isArray(entries));
-    t.is(entries.length, totalResults);
+    t.true(_.isArray(communityMembers));
+    t.is(communityMembers.length, totalResults);
 
     t.end();
   });
@@ -74,9 +74,8 @@ test.cb('validate retrieving community member entry, communityUuid && email prov
     email: 'albert.energy@gis-demo.com',
   };
 
-  service.communityMembers(query, { /* options */ }, (err, response) => {
+  service.communityMembers(query, { /* options */ }, (err, communityMember) => {
     t.ifError(err);
-    const { communityMembers: communityMember } = response;
     communityEntryProps.forEach(prop => t.true(prop in communityMember,
       `[${prop}] should be a property of a communityMember object`));
     const { published, updated, contributor, links } = communityMember;
@@ -101,9 +100,8 @@ test.cb('validate retrieving community member entry, communityUuid && userid pro
     userid: '23176546',
   };
 
-  service.communityMembers(query, { /* options */ }, (err, response) => {
+  service.communityMembers(query, { /* options */ }, (err, communityMember) => {
     t.ifError(err);
-    const { communityMembers: communityMember } = response;
     communityEntryProps.forEach(prop => t.true(prop in communityMember,
       `[${prop}] should be a property of a communityMember object`));
     const { published, updated, contributor, links } = communityMember;
