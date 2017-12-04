@@ -15,26 +15,28 @@
   "bugs": {},
   "homepage": "",
   "scripts": {
-    "coverage": "nyc npm run test && nyc report --reporter=html",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov",
+    "format": "prettier-eslint --write \"lib/**/*.js\" \"test/**/*.js\"",
+    "prelint": "npm run format",
     "lint": "eslint --ignore-path .gitignore .",
-    "lint-fix": "npm run lint -- --fix",
     "test": "ava --verbose",
     "clean": "rm -rf /node_modules package-lock.json"
   },
   "dependencies": {
     "lodash": "4.17.4",
     "oniyi-http-client": "1.2.0",
-    "oniyi-http-plugin-credentials": "0.2.1",
+    "oniyi-http-plugin-credentials": "^1.0.0",
     "oniyi-http-plugin-format-url-template": "1.0.2",
     "oniyi-utils-xml": "1.1.0"
   },
   "devDependencies": {
-    "ava": "0.22.0",
-    "eslint": "4.8.0",
-    "eslint-config-oniyi": "4.5.0",
-    "eslint-plugin-ava": "4.2.2",
-    "nock": "9.0.22",
-    "nyc": "11.2.1"
+    "ava": "^0.24.0",
+    "eslint": "^4.12.1",
+    "eslint-config-oniyi": "5.0.2",
+    "eslint-plugin-ava": "^4.3.0",
+    "nock": "^9.1.4",
+    "nyc": "^11.3.0",
+    "prettier-eslint-cli": "^4.4.2"
   },
   "files": [
     "lib/"
