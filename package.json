@@ -1,6 +1,6 @@
 {
   "name": "ibm-connections-communities",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An implementation for the IBM Connections Communities API",
   "license": "MIT",
   "main": "lib/index.js",
