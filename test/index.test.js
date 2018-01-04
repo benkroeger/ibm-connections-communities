@@ -57,6 +57,24 @@ test.beforeEach((t) => {
 
 /* Successful scenarios validations */
 
+test.cb('validate retrieving community details, communityUuid provided', (t) => {
+  const { service } = t.context;
+  const communityUuid = '5dd83cd6-d3a5-4fb3-89cd-1e2c04e52250';
+
+  service.getCommunity(
+    communityUuid,
+    {
+      /* options */
+    },
+    (err, response) => {
+      t.ifError(err);
+      console.log(response);
+      t.truthy(response);
+      t.end();
+    }
+  );
+});
+
 test.cb('validate retrieving community members feed, communityUuid provided', (t) => {
   const { service } = t.context;
   const query = {
