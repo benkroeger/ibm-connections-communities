@@ -68,7 +68,6 @@ test.cb('validate retrieving community details, communityUuid provided', (t) => 
     },
     (err, response) => {
       t.ifError(err);
-      console.log(response);
       t.truthy(response);
       t.end();
     }
