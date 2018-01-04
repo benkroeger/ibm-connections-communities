@@ -91,7 +91,7 @@ test.cb('validate retrieving community members feed, communityUuid provided', (t
       const {
         totalResults, startIndex, itemsPerPage, communityMembers,
       } = response;
-      t.is(totalResults, 9);
+      t.is(totalResults, 10);
       t.is(startIndex, 1);
       t.is(itemsPerPage, 10);
 
