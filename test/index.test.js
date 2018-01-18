@@ -173,6 +173,38 @@ test.cb('validate retrieving community member entry, communityUuid && userid pro
 });
 
 /* Error / Wrong input scenarios validations */
+test.cb('error validation for retrieving community details, communityUuid not provided', (t) => {
+  const { service } = t.context;
+
+  service.getCommunity(
+    null,
+    {
+      /* options */
+    },
+    (err) => {
+      t.is(err.message, '{{ communityUuid }} must be defined in [getCommunity] request');
+      t.is(err.httpStatus, 404);
+      t.end();
+    }
+  );
+});
+
+test.cb('error validation for retrieving community details, wrong communityId provided', (t) => {
+  const { service } = t.context;
+  const communityUuid = 'mock community ud';
+
+  service.getCommunity(
+    communityUuid,
+    {
+      /* options */
+    },
+    (err) => {
+      t.is(err.httpStatus, 404);
+      t.is(err.name, 'Error');
+      t.end();
+    }
+  );
+});
 
 test.cb('error validation for retrieving community members list, communityUuid not provided', (t) => {
   const { service } = t.context;
