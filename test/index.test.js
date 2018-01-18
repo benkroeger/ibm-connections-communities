@@ -57,6 +57,23 @@ test.beforeEach((t) => {
 
 /* Successful scenarios validations */
 
+test.cb('validate retrieving community details, communityUuid provided', (t) => {
+  const { service } = t.context;
+  const communityUuid = '5dd83cd6-d3a5-4fb3-89cd-1e2c04e52250';
+
+  service.getCommunity(
+    communityUuid,
+    {
+      /* options */
+    },
+    (err, response) => {
+      t.ifError(err);
+      t.truthy(response);
+      t.end();
+    }
+  );
+});
+
 test.cb('validate retrieving community members feed, communityUuid provided', (t) => {
   const { service } = t.context;
   const query = {
@@ -73,7 +90,7 @@ test.cb('validate retrieving community members feed, communityUuid provided', (t
       const {
         totalResults, startIndex, itemsPerPage, communityMembers,
       } = response;
-      t.is(totalResults, 9);
+      t.is(totalResults, 10);
       t.is(startIndex, 1);
       t.is(itemsPerPage, 10);
 
@@ -156,6 +173,38 @@ test.cb('validate retrieving community member entry, communityUuid && userid pro
 });
 
 /* Error / Wrong input scenarios validations */
+test.cb('error validation for retrieving community details, communityUuid not provided', (t) => {
+  const { service } = t.context;
+
+  service.getCommunity(
+    null,
+    {
+      /* options */
+    },
+    (err) => {
+      t.is(err.message, '{{ communityUuid }} must be defined in [getCommunity] request');
+      t.is(err.httpStatus, 404);
+      t.end();
+    }
+  );
+});
+
+test.cb('error validation for retrieving community details, wrong communityId provided', (t) => {
+  const { service } = t.context;
+  const communityUuid = 'mock community ud';
+
+  service.getCommunity(
+    communityUuid,
+    {
+      /* options */
+    },
+    (err) => {
+      t.is(err.httpStatus, 404);
+      t.is(err.name, 'Error');
+      t.end();
+    }
+  );
+});
 
 test.cb('error validation for retrieving community members list, communityUuid not provided', (t) => {
   const { service } = t.context;
